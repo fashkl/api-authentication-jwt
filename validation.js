@@ -24,7 +24,32 @@ const loginValidation = (body) => {
     return schema.validate(body)
 }
 
+//PasswordReset Email Validation
+const passwordResetEmailValidation = (body) => {
+
+    const schema = Joi.object({
+        email: Joi.string().min(4).required().email(),
+    });
+
+    return schema.validate(body)
+}
+
+//PasswordReset Password Validation
+const passwordResetPasswordValidation = (body) => {
+
+    const schema = Joi.object({
+        password: Joi.string().min(6).required(),
+    });
+
+    return schema.validate(body)
+}
 
 
-module.exports.registerValidation = registerValidation;
-module.exports.loginValidation = loginValidation;
+// module.exports.registerValidation = registerValidation;
+// module.exports.loginValidation = loginValidation;
+module.exports = {
+    registerValidation,
+    loginValidation,
+    passwordResetEmailValidation,
+    passwordResetPasswordValidation,
+};
